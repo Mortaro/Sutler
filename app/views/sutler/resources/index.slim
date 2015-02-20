@@ -1,0 +1,17 @@
+h1= params[:resource].titleize
+.ol.breadcrumb
+  li= link_to 'Sutler', root_path
+  li.active= params[:resource].titleize
+table.table.table-hover
+  tr
+    - indexable_attributes.each do |attr, options|
+      th= attr
+    th Ações
+  - @resources.each do |resource|
+    tr
+      - indexable_attributes.each do |attr, options|
+        td= resource.send(options[:index])
+      td
+        = link_to edit_resource_path(params[:resource], resource), class: 'btn btn-default btn-xs pull-right' do
+          span.glyphicon.glyphicon-edit
+          | Editar

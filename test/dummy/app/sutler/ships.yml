@@ -1,0 +1,12 @@
+attributes:
+
+  name:
+    input: text_field
+    index: name
+
+  history:
+    input: text_area
+    index: summarized_history
+
+  photos:
+    input: gallery

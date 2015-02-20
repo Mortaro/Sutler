@@ -1,0 +1,9 @@
+doctype html
+html
+  head
+    title Sutler
+    = stylesheet_link_tag 'sutler/application', media: 'all'
+    = javascript_include_tag 'sutler/application'
+    = csrf_meta_tags
+  body#devise
+    = yield

@@ -1,0 +1,64 @@
+@import "bootstrap-sprockets"
+@import "bootstrap"
+
+body
+  padding-top: 110px
+
+.navbar-header
+  width: 100%
+
+.navbar-fixed-top
+  border-bottom: 3px solid #337ab7
+  padding: 10px 0
+  box-shadow: rgba(0,0,0,0.4) 0 0 4px
+
+.field_with_errors
+  color: #900
+  input
+    border: 1px solid #900
+    color: #900
+
+.glyphicon
+  margin-right: 10px
+
+table
+  th:last-of-type
+    text-align: right
+
+.thumbnails-gallery
+  width: 100%
+  float: left
+  .thumbnail-wrapper
+    margin: 0 10px  10px 0
+    float: left
+    position: relative
+    img
+      max-height: 140px
+    a
+      position: absolute
+      color: #000
+      top: 15px
+      right: 15px
+      background: #fff
+      padding: 5px 5px 3px
+      &:hover
+        background: #900
+        color: #fff
+      span
+        margin: 0 !important
+
+.progress-upload
+  width: 126px
+  height: 34px
+  position: relative
+  .btn
+    position: absolute
+    top: 0
+    left: 0
+  input
+    position: absolute
+    top: 0
+    left: 0
+    bottom: 0
+    right: 0
+    opacity: 0

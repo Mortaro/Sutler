@@ -1,0 +1,31 @@
+= form_for @resource, url: form_resource_path(@resource) do |form|
+  - inputable_attributes.each do |attr, options|
+    .form-group
+      - if options[:input] == 'gallery'
+        = form.label attr
+        .thumbnails-gallery
+          - form.object.send(attr).to_s.split(',').each do |image|
+            .thumbnail-wrapper
+              = image_tag image, class: 'img-thumbnail'
+              = link_to image, method: :delete, data: {confirm: 'Are you sure?'}, remote: true do
+                span.glyphicon.glyphicon-trash
+        .progress.progress-upload
+          .progress-bar.progress-bar-striped.active role="progressbar"
+          .btn.btn-default
+              span.glyphicon.glyphicon-folder-open
+              | Choose File
+              input type="file" name="upload" data-url=uploads_path
+          = form.hidden_field attr
+        .row
+      - else
+        = form.label attr
+        - unless options[:helper].blank?
+          p.text-info= t options[:helper]
+        - if @resource.errors[attr].any?
+          p.text-danger= @resource.errors[attr].map{|e| e.camelize}.join(', ')
+        = form.send(options[:input], attr, class: 'form-control')
+  = form.submit class: 'btn btn-primary'
+  - unless @resource.new_record?
+    = link_to resource_path(params[:resource], @resource), method: 'delete', class: 'btn btn-danger pull-right', data: {confirm: 'Are you sure?'} do
+      span.glyphicon.glyphicon-trash
+      | Delete
