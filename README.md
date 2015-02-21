@@ -24,7 +24,7 @@ Create a folder named `sutler` inside your app folder
 
 Create an admin user:
 
-`rake sutler:user[email@domain.com, password]`
+`rake sutler:user[email@domain.com,password]`
 
 Usage Guide
 -----------

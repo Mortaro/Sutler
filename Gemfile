@@ -13,10 +13,3 @@ gemspec
 # To use a debugger
 # gem 'byebug', group: [:development, :test]
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :jruby]
-gem 'slim'
-gem 'bootstrap-sass', '~> 3.3.3'
-gem 'sass-rails', '>= 3.2'
-gem 'coffee-rails', '~> 4.1.0'
-gem 'jquery-rails'
-gem 'jquery-fileupload-rails'
-gem 'devise'
