@@ -7,14 +7,14 @@
           - form.object.send(attr).to_s.split(',').each do |image|
             .thumbnail-wrapper
               = image_tag image, class: 'img-thumbnail'
-              = link_to image, method: :delete, data: {confirm: 'Are you sure?'}, remote: true do
+              = link_to image, data: {confirm: 'Are you sure?'} do
                 span.glyphicon.glyphicon-trash
-        .progress.progress-upload
+        .progress.progress-upload data-bucket-url=Amazon.bucket_url data-key=Amazon.key data-access-key-id=Amazon.access_key_id data-policy=Amazon.policy data-signature=Amazon.signature
           .progress-bar.progress-bar-striped.active role="progressbar"
           .btn.btn-default
               span.glyphicon.glyphicon-folder-open
               | Choose File
-              input type="file" name="upload" data-url=uploads_path
+              input type="file" name="file"
           = form.hidden_field attr
         .row
       - else

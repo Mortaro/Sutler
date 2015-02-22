@@ -4,10 +4,6 @@ Sutler::Engine.routes.draw do
 
   root 'resources#root'
 
-  match '/uploads' => 'uploads#create', via: [:put, :patch, :post]
-  get '/uploads/:id/:file_name' => 'uploads#show'
-  delete '/uploads/:id/:file_name' => 'uploads#destroy'
-
   get '/:resource' => 'resources#index', as: 'resources'
   get '/:resource/new' => 'resources#new', as: 'new_resource'
   post '/:resource' => 'resources#create'

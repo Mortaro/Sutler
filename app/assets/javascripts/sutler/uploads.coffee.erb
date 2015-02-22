@@ -1,0 +1,44 @@
+$ ->
+
+  $(document).on 'click', '.thumbnail-wrapper a', ->
+    group = $(@).closest('.form-group')
+    $(@).closest('.thumbnail-wrapper').remove()
+    value = []
+    group.find('img').each ->
+      value.push $(@).attr('src')
+    group.find('input[type=hidden]').val value.join(',')
+    false
+
+  $('.progress-upload').each ->
+    that = $(@)
+    that.find('[type=file]').fileupload
+      dataType: 'xml'
+      url: that.attr('data-bucket-url')
+      type: 'POST'
+      autoUpload: true
+      formData:
+        key: that.attr('data-key')
+        AWSAccessKeyId: that.attr('data-access-key-id')
+        acl: "public-read"
+        policy: that.attr('data-policy')
+        signature: that.attr('data-signature')
+        success_action_status: "201"
+      progressall: (e, data) ->
+        that.find('.btn').fadeOut 'slow'
+        progress = parseInt(data.loaded / data.total * 100, 10)
+        that.find('.progress-bar').css 'width', progress + '%'
+      done: (e, data) ->
+        url = that.attr('data-bucket-url') + that.attr('data-key').replace('${filename}', data.files[0].name)
+        that.find('.btn').fadeIn 'slow', ->
+          that.find('.progress-bar').css 'width', '0%'
+        wrapper = $('<div class="thumbnail-wrapper">')
+        image = $('<img/>').attr('src', url).addClass('img-thumbnail').hide()
+        trash = "<a data-confirm='Are you sure?' href='#{url}'><span class='glyphicon glyphicon-trash'></span></a>"
+        wrapper.append image
+        wrapper.append trash
+        that.closest('.form-group').find('.thumbnails-gallery').append wrapper
+        image.slideDown()
+        value = []
+        that.closest('.form-group').find('img').each ->
+          value.push $(@).attr('src')
+        that.find('input[type=hidden]').val value.join(',')
