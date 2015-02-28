@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    sutler (0.0.2)
+    sutler (0.0.3)
       bootstrap-sass (~> 3.3.3)
       coffee-rails (~> 4.1.0)
       devise

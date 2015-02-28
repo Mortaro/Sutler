@@ -4,6 +4,14 @@ attributes:
     input: text_field
     index: name
 
+  created_at:
+    input: text_field
+    readonly: true
+
+  kind:
+    input: select
+    options: Pirate, Naval
+
   history:
     input: text_area
     index: summarized_history

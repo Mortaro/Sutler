@@ -1,5 +1,7 @@
 $ ->
 
+  autosize $('textarea')
+
   $('.field_with_errors input').change ->
     $(@).closest('.form-group').find('.field_with_errors').removeClass('field_with_errors')
 
