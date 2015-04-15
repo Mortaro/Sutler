@@ -1,5 +1,7 @@
 class Ship < ActiveRecord::Base
 
+  sutler
+
   validates_presence_of :name
 
   def summarized_history

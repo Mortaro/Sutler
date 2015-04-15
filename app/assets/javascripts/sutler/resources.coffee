@@ -27,3 +27,20 @@ $ ->
         that.closest('.form-group').find('img').each ->
           value.push $(@).attr('src')
         that.find('input[type=hidden]').val value.join(',')
+
+  label = ->
+    $('table tr').each (index) ->
+      $(@).find('.label').text(index)
+  label()
+
+  $('tbody').sortable
+    axis: 'y'
+    cursor: 'move'
+    placeholder: "sortable-placeholder"
+    stop: ->
+      order = []
+      $('tbody').find('tr').not(':first').each ->
+        order.push $(@).attr('data-id')
+      $.post $('table').attr('data-order'), { order: order.join(',') }, (data) ->
+        label()
+

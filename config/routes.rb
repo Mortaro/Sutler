@@ -4,6 +4,7 @@ Sutler::Engine.routes.draw do
 
   root 'resources#root'
 
+  post '/:resource/order' => 'resources#order', as: 'order_resource'
   get '/:resource' => 'resources#index', as: 'resources'
   get '/:resource/new' => 'resources#new', as: 'new_resource'
   post '/:resource' => 'resources#create'

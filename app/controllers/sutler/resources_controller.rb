@@ -45,6 +45,13 @@ module Sutler
       redirect_to resources_path, notice: 'Resource has been successfully deleted!'
     end
 
+    def order
+      params[:order].split(',').each_with_index do |id, index|
+        resource_model.find(id).update_attribute :order, index
+      end
+      render json: {status: 'ok'}
+    end
+
     def resources_list
       Dir["#{Rails.root}/app/sutler/*.yml"].map {|file| File.basename(file, '.*')}
     end
