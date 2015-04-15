@@ -47,7 +47,7 @@ module Sutler
 
     def order
       params[:order].split(',').each_with_index do |id, index|
-        resource_model.find(id).update_attribute :order, index
+        resource_model.find(id).update_attribute :position, index
       end
       render json: {status: 'ok'}
     end
