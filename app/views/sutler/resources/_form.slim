@@ -24,7 +24,10 @@
         - if @resource.errors[attr].any?
           p.text-danger= @resource.errors[attr].map{|e| e.camelize}.join(', ')
         - if options[:input] == 'select'
-          = form.select attr, options[:options].split(', '), {}, class: 'form-control'
+          - if options[:options][0] == ':'
+            = form.select attr, @resource.send(options[:options][1..-1]), {}, class: 'form-control'
+          - else
+            = form.select attr, options[:options].split(', '), {}, class: 'form-control'
         - else
           = form.send(options[:input], attr, readonly: options[:readonly], class: 'form-control')
   = form.submit class: 'btn btn-primary'
